@@ -7,7 +7,7 @@ class ApiConstants {
 
   // Current environment - you can change this based on build configuration
   //static const String baseUrl = productionBaseUrl;
-  static const String baseUrl =  productionBaseUrl ;
+  static const String baseUrl =  devBaseUrl ;
   // API Endpoints
   static const String login = '/users/login';
   static const String verifySchooleCode = '/schoole/info';

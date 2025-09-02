@@ -171,36 +171,7 @@ class _SchoolVerificationScreenState extends State<SchoolVerificationScreen>
     });
   }
 
-  Future<void> _verifySchoolCode() async {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isLoading = true;
-      });
 
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-
-      // Mock verification
-      final schoolCode = _schoolCodeController.text.toUpperCase();
-      final school = _mockSchools.firstWhere(
-            (s) => s.code == schoolCode,
-        orElse: () => SchoolData(id: '', name: '', location: '', code: '', type: '', logo: Icons.error),
-      );
-
-      if (school.id.isNotEmpty) {
-        _navigateToLogin('');
-      } else {
-        _shakeForm();
-        _showErrorSnackBar('Invalid school code. Please try again.');
-      }
-
-      setState(() {
-        _isLoading = false;
-      });
-    } else {
-      _shakeForm();
-    }
-  }
 
   void _selectSchool(SchoolData school) {
    // _navigateToLogin(school);
@@ -226,16 +197,6 @@ class _SchoolVerificationScreenState extends State<SchoolVerificationScreen>
     });
   }
 
-  void _showErrorSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.red,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
-    );
-  }
 
   @override
   void dispose() {

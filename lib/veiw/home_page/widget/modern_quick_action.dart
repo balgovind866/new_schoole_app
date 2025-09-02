@@ -5,6 +5,8 @@ class ModernQuickAction {
   final IconData icon;
   final List<Color> gradientColors;
   final String subtitle;
+  final String? page;
 
-  ModernQuickAction(this.title, this.icon, this.gradientColors, this.subtitle);
+
+  ModernQuickAction(this.title, this.icon, this.gradientColors, this.subtitle, this.page, );
 }

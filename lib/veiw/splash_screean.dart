@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:schoole_app/veiw/onboading_screan/onboading_screans.dart';
+import 'package:schoole_app/veiw/teacher/student_enrollment.dart';
+import 'package:schoole_app/veiw/teacher/student_regitations.dart';
 
 import 'home_page/home_page.dart';
 
@@ -129,8 +131,8 @@ class _SplashScreenState extends State<SplashScreen>
     await Future.delayed(const Duration(milliseconds: 3500));
     if (mounted) {
       // Navigate to your main screen here
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OnboardingScreen()));
-    //   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SchoolHomePage()));
+     // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OnboardingScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SchoolHomePage()));
     }
   }
 

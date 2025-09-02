@@ -293,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen>
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // User Type Selector
-              _buildUserTypeSelector(colorScheme, textTheme),
+             // _buildUserTypeSelector(colorScheme, textTheme),
       
               const SizedBox(height: 24),
       

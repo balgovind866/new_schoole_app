@@ -8,6 +8,9 @@ import 'dart:math' as math;
 import 'package:schoole_app/veiw/home_page/widget/modern_quick_action.dart';
 import 'package:schoole_app/veiw/home_page/widget/particle_background_painter.dart';
 
+import '../teacher/student_enrollment.dart';
+import '../teacher/student_regitations.dart';
+
 class SchoolHomePage extends StatefulWidget {
   const SchoolHomePage({super.key});
 
@@ -37,25 +40,59 @@ class _SchoolHomePageState extends State<SchoolHomePage>
   int _selectedIndex = 0;
   bool _isSearchExpanded = false;
   final TextEditingController _searchController = TextEditingController();
-
+  final Map<String, Widget> quickActionRoutes = {
+    'New Student': StudentRegistrationForm(),
+    'Add Staff': StudentRegistrationPage(),
+    'Student Attendance': StudentRegistrationPage(),
+    'Send SMS': StudentRegistrationPage(),
+    // baki ke bhi
+  };
   // Enhanced mock data with more visual elements
   final List<ModernQuickAction> quickActions = [
-    ModernQuickAction('Attendance', Icons.verified_user,
-        [Color(0xff006876), Color(0xff006876)], '95%'),
-    ModernQuickAction('Assignments', Icons.edit_note,
-  [Color(0xff006876), Color(0xff006876)], '8 Due'),
-    ModernQuickAction('Grades', Icons.emoji_events,
-  [Color(0xff006876), Color(0xff006876)], 'A- Avg'),
-    ModernQuickAction('Schedule', Icons.access_time,
-        [Color(0xff006876), Color(0xff006876)], 'Today'),
-    ModernQuickAction('Library', Icons.menu_book,
-        [Color(0xff006876), Color(0xff006876)], '3 Books'),
-    ModernQuickAction('Events', Icons.celebration,
-        [Color(0xff006876), Color(0xff006876)], '2 Coming'),
-    ModernQuickAction('Fees', Icons.payment,
-        [Color(0xff006876), Color(0xff006876)], 'Pending'),
-    ModernQuickAction('Profile', Icons.person,
-        [Color(0xff006876), Color(0xff006876)], 'View'),
+    ModernQuickAction('New Student', Icons.school_outlined,
+        [Color(0xff006876), Color(0xff006876)], 'Add',"New Student"),
+    ModernQuickAction('Add Staff', Icons.person_add,
+        [Color(0xff006876), Color(0xff006876)], 'Register','Add Staff'),
+    ModernQuickAction('Student Attendance', Icons.fact_check,
+        [Color(0xff006876), Color(0xff006876)], 'Mark',''),
+    ModernQuickAction('Send SMS', Icons.mark_email_unread,
+        [Color(0xff006876), Color(0xff006876)], 'Notify',''),
+    ModernQuickAction('Upload Homework', Icons.file_upload,
+        [Color(0xff006876), Color(0xff006876)], 'Assign',''),
+    ModernQuickAction('Upload Notice', Icons.description,
+        [Color(0xff006876), Color(0xff006876)], 'Post',''),
+    ModernQuickAction('Upload Syllabus', Icons.menu_book,
+        [Color(0xff006876), Color(0xff006876)], 'Share',''),
+    ModernQuickAction('Upload Circular', Icons.article,
+        [Color(0xff006876), Color(0xff006876)], 'Publish',''),
+    ModernQuickAction('Upload Activity', Icons.calendar_month,
+        [Color(0xff006876), Color(0xff006876)], 'Schedule',''),
+    ModernQuickAction('School News', Icons.newspaper,
+        [Color(0xff006876), Color(0xff006876)], 'Update',''),
+    ModernQuickAction('Upload Downloads', Icons.cloud_download,
+        [Color(0xff006876), Color(0xff006876)], 'Files',''),
+    ModernQuickAction('Document', Icons.edit_document,
+        [Color(0xff006876), Color(0xff006876)], 'Manage',''),
+    ModernQuickAction('Marks Manager', Icons.settings,
+        [Color(0xff006876), Color(0xff006876)], 'Grades',''),
+    ModernQuickAction('Student Photo', Icons.photo_camera,
+        [Color(0xff006876), Color(0xff006876)], 'Upload',''),
+    ModernQuickAction('Staff Photo', Icons.badge,
+        [Color(0xff006876), Color(0xff006876)], 'Update',''),
+    ModernQuickAction('Leave Management', Icons.event_available,
+        [Color(0xff006876), Color(0xff006876)], 'Track',''),
+    ModernQuickAction('PTM', Icons.people,
+        [Color(0xff006876), Color(0xff006876)], 'Meeting',''),
+    ModernQuickAction('Master Update', Icons.sync,
+        [Color(0xff006876), Color(0xff006876)], 'System',''),
+    ModernQuickAction('Chat', Icons.chat_bubble_outline,
+        [Color(0xff006876), Color(0xff006876)], 'Messages',''),
+    ModernQuickAction('Visitor', Icons.person_pin,
+        [Color(0xff006876), Color(0xff006876)], 'Log',''),
+    ModernQuickAction('Staff Attendance', Icons.how_to_reg,
+        [Color(0xff006876), Color(0xff006876)], 'Track',''),
+    ModernQuickAction('Teacher Timetable', Icons.schedule,
+        [Color(0xff006876), Color(0xff006876)], 'Plan',''),
   ];
 
   @override
@@ -850,6 +887,15 @@ class _SchoolHomePageState extends State<SchoolHomePage>
               child: InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
+                  if (quickActionRoutes.containsKey(action.title)) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => quickActionRoutes[action.title]!,
+                      ),
+                    );
+                  }
+
                   _rippleController.reset();
                   _rippleController.forward();
                 },
